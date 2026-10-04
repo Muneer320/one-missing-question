@@ -1,0 +1,4 @@
+FROM ollama/ollama:0.35.1
+
+COPY scripts/start-model.sh /start-model.sh
+ENTRYPOINT ["/bin/sh", "/start-model.sh"]

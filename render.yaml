@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: one-missing-question
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: OLLAMA_BASE_URL
+        fromService:
+          type: pserv
+          name: one-missing-question-model
+          property: hostport
+      - key: OLLAMA_MODEL
+        value: gemma4:e2b
+
+  - type: pserv
+    name: one-missing-question-model
+    runtime: docker
+    dockerfilePath: ./Dockerfile.model
+    plan: 2c-8g
+    envVars:
+      - key: OLLAMA_HOST
+        value: 0.0.0.0:11434
+      - key: OLLAMA_MODEL
+        value: gemma4:e2b
+    disk:
+      name: model-data
+      mountPath: /root/.ollama
+      sizeGB: 10
