@@ -13,19 +13,21 @@ services:
           name: one-missing-question-model
           property: hostport
       - key: OLLAMA_MODEL
-        value: gemma4:e2b
+        value: gemma2:2b-instruct-q3_K_S
 
   - type: pserv
     name: one-missing-question-model
     runtime: docker
     dockerfilePath: ./Dockerfile.model
-    plan: 2c-8g
+    plan: 1c-2g
     envVars:
       - key: OLLAMA_HOST
         value: 0.0.0.0:11434
       - key: OLLAMA_MODEL
-        value: gemma4:e2b
+        value: gemma2:2b-instruct-q3_K_S
+      - key: OLLAMA_KEEP_ALIVE
+        value: '-1'
     disk:
       name: model-data
       mountPath: /root/.ollama
-      sizeGB: 10
+      sizeGB: 3

@@ -4,17 +4,14 @@ import { createServer } from 'node:http';
 import { validateFindings, analyzeChat } from '../src/analyze.js';
 import { createApp } from '../src/server.js';
 
-test('confirmed details need an exact quote from the source', () => {
+test('displayed excerpts must appear in the source', () => {
   const source = 'Mira: I can do Saturday after 6.\nLee: Sunday works better for me.';
   const result = validateFindings({
-    agreed: [
-      { detail: 'Mira is free after 6', evidence: 'I can do Saturday after 6.' },
-      { detail: 'Everyone agreed on Saturday', evidence: 'Everyone agreed on Saturday' }
-    ],
+    quotes: ['I can do Saturday after 6.', 'Everyone agreed on Saturday'],
     unclear: ['Which day works for everyone?'],
     question: 'Would Saturday or Sunday work better for everyone?'
   }, source);
-  assert.equal(result.agreed.length, 1);
+  assert.deepEqual(result.quotes, ['I can do Saturday after 6.']);
   assert.equal(result.discarded, 1);
   assert.match(result.unclear[0], /Which day/);
 });
@@ -23,16 +20,16 @@ test('model request uses Gemma and validates its response', async () => {
   let request;
   const fetcher = async (_url, init) => {
     request = JSON.parse(init.body);
-    return { ok: true, json: async () => ({ message: { content: JSON.stringify({ agreed: [], unclear: ['Time is missing'], question: 'What time works?' }) } }) };
+    return { ok: true, json: async () => ({ message: { content: JSON.stringify({ quotes: [], unclear: ['Time is missing'], question: 'What time works?' }) } }) };
   };
   const result = await analyzeChat('A: Saturday is possible. B: I can join later.', { fetcher });
-  assert.equal(request.model, 'gemma4:e2b');
+  assert.equal(request.model, 'gemma2:2b-instruct-q3_K_S');
   assert.equal(request.stream, false);
   assert.equal(result.question, 'What time works?');
 });
 
 test('API rejects short input and accepts an analyzed chat', async () => {
-  const app = createApp(async () => ({ agreed: [], unclear: ['Time'], question: 'What time?', discarded: 0, model: 'gemma4:e2b' }));
+  const app = createApp(async () => ({ quotes: [], unclear: ['Time'], question: 'What time?', discarded: 0, model: 'gemma2:2b-instruct-q3_K_S' }));
   await new Promise((resolve) => app.listen(0, '127.0.0.1', resolve));
   const url = `http://127.0.0.1:${app.address().port}/api/analyze`;
   try {
@@ -46,15 +43,12 @@ test('API rejects short input and accepts an analyzed chat', async () => {
   }
 });
 
-test('HTTP flow drops an unsupported model citation', async () => {
+test('HTTP flow drops an invented quote', async () => {
   const model = createApp();
   const ollama = createServer((_req, res) => {
     res.writeHead(200, { 'content-type': 'application/json' });
     res.end(JSON.stringify({ message: { content: JSON.stringify({
-      agreed: [
-        { detail: 'Saturday was suggested', evidence: 'Saturday works for me' },
-        { detail: 'The venue is confirmed', evidence: 'Everyone picked the cafe' }
-      ],
+      quotes: ['Saturday works for me', 'Everyone picked the cafe'],
       unclear: ['Which place should we use?'],
       question: 'Where should we meet?'
     }) } }));
@@ -70,7 +64,7 @@ test('HTTP flow drops an unsupported model citation', async () => {
     });
     const result = await response.json();
     assert.equal(response.status, 200);
-    assert.equal(result.agreed.length, 1);
+    assert.deepEqual(result.quotes, ['Saturday works for me']);
     assert.equal(result.discarded, 1);
     assert.equal(result.question, 'Where should we meet?');
   } finally {
