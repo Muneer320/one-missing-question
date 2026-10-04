@@ -1,12 +1,15 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f4eee1">
-    <meta name="description" content="Find the one question your group chat still needs to answer.">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4eee1" />
+    <meta
+      name="description"
+      content="Find the one question your group chat still needs to answer."
+    />
     <title>The One Missing Question</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/styles.css" />
     <script src="/app.js" defer></script>
   </head>
   <body>
@@ -16,57 +19,185 @@
           <span class="brand-mark" aria-hidden="true">?</span>
           <span>one missing question<span class="brand-period">.</span></span>
         </a>
-        <span class="header-note"><span class="sparkle" aria-hidden="true">✳</span> a tiny tool for the group-chat wrangler</span>
+        <span class="header-note"
+          ><span class="sparkle" aria-hidden="true">✳</span> a tiny tool for
+          the group-chat wrangler</span
+        >
       </header>
 
       <main>
         <section class="hero" aria-labelledby="hero-title">
           <div class="hero-copy">
-            <div class="eyebrow"><span class="eyebrow-line"></span> LESS GUESSING, MORE GETTING TOGETHER</div>
-            <h1 id="hero-title">The plan is <em>almost</em> a plan<span class="hero-dot">.</span></h1>
-            <p>That group chat has a hundred messages and somehow still no meeting time. Paste the conversation; we’ll find what’s settled, what isn’t, and the one question to ask next.</p>
-            <div class="hero-meta"><span class="mini-sun" aria-hidden="true">☀</span> Made for the friend who always makes the plans happen</div>
+            <div class="eyebrow">
+              <span class="eyebrow-line"></span> LESS GUESSING, MORE GETTING
+              TOGETHER
+            </div>
+            <h1 id="hero-title">
+              The plan is <em>almost</em> a plan<span class="hero-dot">.</span>
+            </h1>
+            <p>
+              That group chat has a hundred messages and somehow still no
+              meeting time. Paste the conversation; we’ll show the actual words,
+              what remains open, and one question to ask next.
+            </p>
+            <div class="hero-meta">
+              <span class="mini-sun" aria-hidden="true">☀</span> Made for the
+              friend who always makes the plans happen
+            </div>
           </div>
           <div class="hero-art" aria-hidden="true">
             <div class="art-circle"></div>
-            <div class="art-card art-back"><span class="art-line long"></span><span class="art-line"></span><span class="art-line tiny"></span></div>
-            <div class="art-card art-front"><span class="art-pin"></span><span class="art-question">?</span><span class="art-squiggle">〰</span></div>
-            <span class="art-star star-one">✱</span><span class="art-star star-two">✳</span>
+            <div class="art-card art-back">
+              <span class="art-line long"></span><span class="art-line"></span
+              ><span class="art-line tiny"></span>
+            </div>
+            <div class="art-card art-front">
+              <span class="art-pin"></span><span class="art-question">?</span
+              ><span class="art-squiggle">〰</span>
+            </div>
+            <span class="art-star star-one">✱</span
+            ><span class="art-star star-two">✳</span>
           </div>
         </section>
 
         <section class="workspace" aria-label="Analyze a conversation">
-          <div class="workspace-heading"><span class="section-number">01 /</span><h2>Pin the conversation</h2><span class="heading-rule"></span><span class="side-label">the messy part</span></div>
+          <div class="workspace-heading">
+            <span class="section-number">01 /</span>
+            <h2>Pin the conversation</h2>
+            <span class="heading-rule"></span
+            ><span class="side-label">the messy part</span>
+          </div>
           <div class="board-grid">
             <section class="paper input-paper" aria-labelledby="input-title">
               <span class="tape tape-pink" aria-hidden="true"></span>
-              <div class="paper-head"><span class="paper-kicker">START HERE ↘</span><span class="paper-doodle" aria-hidden="true">✦</span></div>
+              <div class="paper-head">
+                <span class="paper-kicker">START HERE ↘</span
+                ><span class="paper-doodle" aria-hidden="true">✦</span>
+              </div>
               <h3 id="input-title">The chat, unedited.</h3>
-              <p class="paper-description">Paste a short excerpt. Names are optional; context helps.</p>
+              <p class="paper-description">
+                Paste a short excerpt. Names are optional; context helps.
+              </p>
               <label class="sr-only" for="chat-input">Group conversation</label>
-              <textarea id="chat-input" maxlength="12000" spellcheck="false" placeholder="Mira: Friday works for me!&#10;Jay: I can do Friday, but only after 7..." aria-describedby="privacy-note"></textarea>
-              <div class="input-footer"><span id="char-count">0 / 12,000</span><button type="button" class="text-button" id="sample-button">Try a sample chat <span aria-hidden="true">↗</span></button></div>
-              <p class="privacy-note" id="privacy-note"><span aria-hidden="true">◌</span> For a private conversation, run the app and model on your own computer.</p>
-              <button type="button" class="analyze-button" id="analyze-button"><span id="analyze-label">Find the missing question</span><span class="button-arrow" aria-hidden="true">↗</span></button>
-              <p class="status" id="status" role="status" aria-live="polite"></p>
+              <textarea
+                id="chat-input"
+                maxlength="12000"
+                spellcheck="false"
+                placeholder="Mira: Friday works for me!&#10;Jay: I can do Friday, but only after 7..."
+                aria-describedby="privacy-note"
+              ></textarea>
+              <div class="input-footer">
+                <span id="char-count">0 / 12,000</span
+                ><button type="button" class="text-button" id="sample-button">
+                  Try a sample chat <span aria-hidden="true">↗</span>
+                </button>
+              </div>
+              <p class="privacy-note" id="privacy-note">
+                <span aria-hidden="true">◌</span> For a private conversation,
+                run the app and model on your own computer.
+              </p>
+              <button type="button" class="analyze-button" id="analyze-button">
+                <span id="analyze-label">Find the missing question</span
+                ><span class="button-arrow" aria-hidden="true">↗</span>
+              </button>
+              <p
+                class="status"
+                id="status"
+                role="status"
+                aria-live="polite"
+              ></p>
             </section>
 
             <section class="result-stack" aria-labelledby="results-title">
-              <div class="stack-heading"><div><span class="paper-kicker">THE SHORT VERSION</span><h3 id="results-title">What the chat says<span class="small-dot">.</span></h3></div><span class="hand-arrow" aria-hidden="true">↙</span></div>
-              <div id="empty-state" class="empty-state"><span class="empty-scribble" aria-hidden="true">✳</span><p>Waiting for the clues.</p><span>Paste a conversation and we’ll sort the paper trail.</span></div>
+              <div class="stack-heading">
+                <div>
+                  <span class="paper-kicker">THE SHORT VERSION</span>
+                  <h3 id="results-title">
+                    What the chat says<span class="small-dot">.</span>
+                  </h3>
+                </div>
+                <span class="hand-arrow" aria-hidden="true">↙</span>
+              </div>
+              <div id="empty-state" class="empty-state">
+                <span class="empty-scribble" aria-hidden="true">✳</span>
+                <p>Waiting for the clues.</p>
+                <span
+                  >Paste a conversation and we’ll sort the paper trail.</span
+                >
+              </div>
               <div id="results" hidden>
-                <article class="result-card agreed-card"><span class="tape tape-sage" aria-hidden="true"></span><div class="card-heading"><span class="card-icon" aria-hidden="true">✓</span><h4>Seems settled</h4><span class="card-count" id="agreed-count"></span></div><ul id="agreed-list"></ul><p class="card-empty" id="agreed-empty" hidden>Nothing is firmly settled yet. That’s useful to know.</p></article>
-                <article class="result-card unclear-card"><div class="card-heading"><span class="card-icon" aria-hidden="true">?</span><h4>Still up in the air</h4></div><ul id="unclear-list"></ul><p class="card-empty" id="unclear-empty" hidden>No open details found in this excerpt.</p></article>
-                <article class="result-card question-card"><span class="tape tape-yellow" aria-hidden="true"></span><span class="paper-kicker">THE ONE TO SEND</span><label for="question-output">Ask this next <span aria-hidden="true">✎</span></label><textarea id="question-output" rows="3" aria-describedby="edit-hint"></textarea><div class="question-footer"><span id="edit-hint">Make it sound like you.</span><button type="button" id="copy-button" class="copy-button">Copy question <span aria-hidden="true">↗</span></button></div></article>
+                <article class="result-card quote-card">
+                  <span class="tape tape-sage" aria-hidden="true"></span>
+                  <div class="card-heading">
+                    <span class="card-icon" aria-hidden="true">✎</span>
+                    <h4>What was said</h4>
+                    <span class="card-count" id="quote-count"></span>
+                  </div>
+                  <ul id="quote-list"></ul>
+                  <p class="card-empty" id="quote-empty" hidden>
+                    No exact excerpts found. Read the chat directly.
+                  </p>
+                </article>
+                <article class="result-card unclear-card">
+                  <div class="card-heading">
+                    <span class="card-icon" aria-hidden="true">?</span>
+                    <h4>Still up in the air</h4>
+                  </div>
+                  <ul id="unclear-list"></ul>
+                  <p class="card-empty" id="unclear-empty" hidden>
+                    No open details found in this excerpt.
+                  </p>
+                </article>
+                <article class="result-card question-card">
+                  <span class="tape tape-yellow" aria-hidden="true"></span
+                  ><span class="paper-kicker">THE ONE TO SEND</span
+                  ><label for="question-output"
+                    >Ask this next <span aria-hidden="true">✎</span></label
+                  ><textarea
+                    id="question-output"
+                    rows="3"
+                    aria-describedby="edit-hint"
+                  ></textarea>
+                  <div class="question-footer">
+                    <span id="edit-hint">Make it sound like you.</span
+                    ><button type="button" id="copy-button" class="copy-button">
+                      Copy question <span aria-hidden="true">↗</span>
+                    </button>
+                  </div>
+                </article>
                 <p class="result-footnote" id="result-footnote"></p>
               </div>
             </section>
           </div>
         </section>
 
-        <section class="how-it-works" aria-labelledby="how-title"><div class="how-heading"><span class="section-number">02 /</span><h2 id="how-title">A little less back-and-forth.</h2></div><div class="steps"><div><span>01</span><strong>Drop in the chat</strong><p>Use only the messages needed to make the plan.</p></div><div><span>02</span><strong>Check the receipts</strong><p>Every settled detail comes with its source quote.</p></div><div><span>03</span><strong>Send one good question</strong><p>Edit the suggestion, copy it, and move things along.</p></div></div></section>
+        <section class="how-it-works" aria-labelledby="how-title">
+          <div class="how-heading">
+            <span class="section-number">02 /</span>
+            <h2 id="how-title">A little less back-and-forth.</h2>
+          </div>
+          <div class="steps">
+            <div>
+              <span>01</span><strong>Drop in the chat</strong>
+              <p>Use only the messages needed to make the plan.</p>
+            </div>
+            <div>
+              <span>02</span><strong>Check the receipts</strong>
+              <p>Read the exact words before deciding what they mean.</p>
+            </div>
+            <div>
+              <span>03</span><strong>Send one good question</strong>
+              <p>Edit the suggestion, copy it, and move things along.</p>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer class="site-footer"><span>Made for plans that are worth making.</span><span>Powered by open-weight Gemma <span aria-hidden="true">✳</span></span></footer>
+      <footer class="site-footer">
+        <span>Made for plans that are worth making.</span
+        ><span
+          >Powered by open-weight Gemma <span aria-hidden="true">✳</span></span
+        >
+      </footer>
     </div>
   </body>
 </html>
