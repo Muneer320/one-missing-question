@@ -4,7 +4,7 @@
 
 ![Prototype status](https://img.shields.io/badge/status-working%20prototype-D86A4C?style=flat-square) ![Gemma](https://img.shields.io/badge/model-Gemma%202%202B-B8C8B2?style=flat-square)
 
-> The sample conversation is fictional. Do not publish real group messages without everyone’s consent.
+> Try the built-in sample first. Share private group messages only with everyone’s consent.
 
 ## Why this exists
 
@@ -50,7 +50,7 @@ Gemma does the useful work: it selects relevant excerpts, identifies conflicts, 
 npm test
 ```
 
-The focused tests cover quote rejection, the Ollama request, and API input validation. They use a mock model response, so they do not measure Gemma’s actual answer quality. Live checks with five fictional chats found that the first design wrongly promoted suggestions to agreements. That result led to the source-excerpt design. The final Gemma 2 run produced valid responses for all five chats. Its questions can still be broad, so edit before using them.
+The focused tests cover quote rejection, the Ollama request, and API input validation. They use a mock model response, so they do not measure Gemma’s actual answer quality. Live checks with five sample chats found that the first design wrongly promoted suggestions to agreements. That result led to the source-excerpt design. The final Gemma 2 run produced valid responses for all five chats. Its questions can still be broad, so edit before using them.
 
 ## Deploy on Render
 
@@ -61,15 +61,15 @@ Deployment steps:
 1. Push this new repository to GitHub.
 2. In Render, create a Blueprint from the repository and review both services and costs.
 3. Wait for the private model service to download Gemma, then open the public web URL.
-4. Run the fictional sample and verify the output. Record the URL and a short video for the challenge article.
+4. Run the built-in sample and verify the output. Record the URL and a short video for the challenge article.
 
 The model is intentionally separate from the web process because its download and memory needs differ. A model startup may take several minutes; the app reports a retryable error if inference is not ready yet.
 
 ## Challenge fit
 
 - **Gemma featured category:** Gemma 2 2B is the open-weight model that reads the chat and drafts the question.
-- **Render featured category:** Render hosts the UI, API, and private Gemma runtime in the deployment blueprint.
-- **Theme:** The intended user is one real friend who organizes plans. The project needs a real handoff and feedback before the submission story can truthfully claim that outcome.
+- **Render featured category:** The Blueprint is configured to host the UI, API, and private Gemma runtime on Render. A live deployment is still needed for this category.
+- **Theme:** The intended user is a friend who organizes plans. A handoff and their feedback remain to be done.
 
 The [Hacktoberfest Weekend Challenge](https://dev.to/challenges/hacktoberfest-weekend-2026-10-01) closes **October 5, 2026 at 06:59 UTC**. Use the required DEV tags `devchallenge`, `weekendchallenge`, and `hf26challenge`. The article should link to code and a demo, explain why open-weight AI matters here, and report the actual friend’s response.
 
@@ -78,7 +78,7 @@ The [Hacktoberfest Weekend Challenge](https://dev.to/challenges/hacktoberfest-we
 - Only paste messages needed to settle the plan.
 - A displayed quote means the text appears in the source, not that all participants agreed with it. Review the interpretation.
 - The question is a draft. Edit it before sending.
-- The sample is fictional; replace it with a consented real test for the challenge story.
+- Test with a friend's chat only with the group's consent, and report their actual feedback in the challenge story.
 
 ## Sources
 
