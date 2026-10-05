@@ -2,7 +2,7 @@
 
 **A small scrapbook for the friend who keeps the group chat moving.** Paste a planning conversation and get a short view of what is supported by the messages, what is unresolved, and one question to ask next.
 
-![Prototype status](https://img.shields.io/badge/status-working%20prototype-D86A4C?style=flat-square) ![Gemma](https://img.shields.io/badge/model-Gemma%202%202B-B8C8B2?style=flat-square)
+![Gemma](https://img.shields.io/badge/model-Gemma%202%202B-B8C8B2?style=flat-square)
 
 > Try the built-in sample first. Share private group messages only with everyone’s consent.
 
@@ -54,35 +54,26 @@ The focused tests cover quote rejection, the Ollama request, and API input valid
 
 ## Deploy on Render
 
-[`render.yaml`](render.yaml) defines a public Node web service and a private Ollama service. Render serves the app and runs its Gemma inference. The private service pulls `gemma2:2b-instruct-q3_K_S` on startup and stores it on a persistent disk. The blueprint uses a **paid 1 CPU / 2 GB model service and a 3 GB disk** (about $25.75/month at current list prices, prorated while active). The model may be close to the memory limit on this tier; verify the live deployment before sharing it. The web service is configured on the free plan. The model service is private to Render’s network, but the public app still sends submitted chat text to that hosted service.
+[`render.yaml`](render.yaml) defines a public Node web service and a private Ollama service. The private service pulls `gemma2:2b-instruct-q3_K_S` on startup and stores it on a persistent disk. The blueprint uses a **paid 1 CPU / 2 GB model service and a 3 GB disk** (about $25.75/month at current list prices, prorated while active). The model may be close to the memory limit on this tier. The web service is configured on the free plan. The model service is private to Render’s network, but the public app still sends submitted chat text to that hosted service.
 
 Deployment steps:
 
 1. Push this new repository to GitHub.
 2. In Render, create a Blueprint from the repository and review both services and costs.
 3. Wait for the private model service to download Gemma, then open the public web URL.
-4. Run the built-in sample and verify the output. Record the URL and a short video for the challenge article.
+4. Run the built-in sample and verify the output.
 
 The model is intentionally separate from the web process because its download and memory needs differ. A model startup may take several minutes; the app reports a retryable error if inference is not ready yet.
-
-## Challenge fit
-
-- **Gemma featured category:** Gemma 2 2B is the open-weight model that reads the chat and drafts the question.
-- **Render featured category:** The Blueprint is configured to host the UI, API, and private Gemma runtime on Render. A live deployment is still needed for this category.
-- **Theme:** The intended user is a friend who organizes plans. A handoff and their feedback remain to be done.
-
-The [Hacktoberfest Weekend Challenge](https://dev.to/challenges/hacktoberfest-weekend-2026-10-01) closes **October 5, 2026 at 06:59 UTC**. Use the required DEV tags `devchallenge`, `weekendchallenge`, and `hf26challenge`. The article should link to code and a demo, explain why open-weight AI matters here, and report the actual friend’s response.
 
 ## Boundaries
 
 - Only paste messages needed to settle the plan.
 - A displayed quote means the text appears in the source, not that all participants agreed with it. Review the interpretation.
 - The question is a draft. Edit it before sending.
-- Test with a friend's chat only with the group's consent, and report their actual feedback in the challenge story.
+- Get the group's consent before using their chat.
 
 ## Sources
 
 - [Gemma with Ollama](https://ai.google.dev/gemma/docs/integrations/ollama)
 - [Ollama structured outputs](https://docs.ollama.com/capabilities/structured-outputs)
 - [Render Blueprint specification](https://render.com/docs/blueprint-spec)
-- [Challenge brief](https://dev.to/challenges/hacktoberfest-weekend-2026-10-01)
